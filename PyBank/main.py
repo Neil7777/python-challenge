@@ -26,27 +26,50 @@ with open(input_file,newline="", encoding="utf-8") as budget:
         totalmonths.append(row[0])
         totalPnL.append(int(row[1]))
 
-        #print (totalmonths,totalPnL)
+            #print (totalmonths,totalPnL)
 
     for i in range(len(totalPnL)-1):
+#Calculating the monthly change in profit
+        monthlyPnLchange.append(totalPnL[i+1]-totalPnL[i])
 
-        monthlyPnLchange.append(totalPnL[i+1]-totalPnL[1])
-
-
+#calculate the max and min in all the months
 max_profit = max(monthlyPnLchange)
 max_loss = min(monthlyPnLchange)
 
-print(max_loss)
-print(max_profit)
+#print(max_loss)
+#print(max_profit)
 
+#
 max_increase_month = monthlyPnLchange.index(max(monthlyPnLchange)) +1
 max_decrease_month = monthlyPnLchange.index(min(monthlyPnLchange)) +1
 
 
+#print statements
 print("Financial Analysis")
 print("-------------------------------------")
 print(f"Total Month: {len(totalmonths)}")
 print(f"Total: ${sum(totalPnL)}")
-print(f"Average Change: {round(sum(monthlyPnLchange)/len(monthlyPnLchange),2)}")
+print(f"Average Change: {round(sum(monthlyPnLchange)/len(monthlyPnLchange))}")
 print(f"Greatest Increase in Profits: {totalmonths[max_increase_month]} (${(str(max_profit))})")
 print(f"Greatest Decrease in Profits: {totalmonths[max_decrease_month]} (${(str(max_loss))})")
+
+
+
+#Output file
+output_file = Path("Pybank", "analysis", "Analysis.txt")
+
+with open(output_file,"w") as file:
+
+    file.write("Financial Analysis")
+    file.write("\n")
+    file.write("-------------------------------------")
+    file.write("\n")
+    file.write(f"Total Month: {len(totalmonths)}")
+    file.write("\n")
+    file.write(f"Total: ${sum(totalPnL)}")
+    file.write("\n")
+    file.write(f"Average Change: {round(sum(monthlyPnLchange)/len(monthlyPnLchange),2)}")
+    file.write("\n")
+    file.write(f"Greatest Increase in Profits: {totalmonths[max_increase_month]} (${(str(max_profit))})")
+    file.write("\n")
+    file.write(f"Greatest Decrease in Profits: {totalmonths[max_decrease_month]} (${(str(max_loss))})")
