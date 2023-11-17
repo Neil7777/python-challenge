@@ -58,3 +58,24 @@ print("-------------------------")
 print(f"Winner: {winner}")
 
 #Output file
+output_file = Path("Pypoll", "analysis", "Analysis.txt")
+
+with open(output_file,"w") as file:
+
+    file.write("Election Results")
+    file.write("\n")
+    file.write("-------------------------")
+    file.write("\n")
+    file.write(f"Total Votes: {TotalVote}")
+    file.write("\n")
+    file.write("-------------------------")
+    file.write("\n")
+    file.write(f"Charles Casper Stockham: {StockhamPercent:.3f}% {Stockham}")
+    file.write("\n")
+    file.write(f"Diana DeGette: {DeGettePercent:.3f}% {DeGette}")
+    file.write("\n")
+    file.write(f"Raymon Anthony Doane: {DoanePercent:.3f}% {Doane}")
+    file.write("\n")
+    file.write("-------------------------")
+    file.write("\n")
+    file.write(f"Winner: {winner}")
